@@ -1,3 +1,6 @@
+# production dockerfile doesn't allow us to run any tests
+# there is no npm installed in production
+# only copy build folder over
 FROM node:alpine as builder
 WORKDIR '/app'
 COPY ./package.json ./
