@@ -27,3 +27,16 @@ after_success:
   - docker push crownkira/multi-nginx
   - docker push crownkira/multi-server
   - docker push crownkira/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-east-2'
+  app: 'multi-docker'
+  env: 'MultiDocker-env'
+  # where travis zips up our entire project and stash it inside some s3 bucket
+  bucket_name: 'elasticbeanstalk-us-east-2-486208507309'
+  bucket_path: 'docker-multi'
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
