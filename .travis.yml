@@ -8,7 +8,7 @@ before_install:
 
 # test running section
 script:
-  - docker run -e CI=true USERNAME/react-test npm test
+  - docker run -e CI=true crownkira/react-test npm test
 
 # after test success
 after_success:
@@ -20,7 +20,7 @@ after_success:
   # login in one single command
   # retrieve docker password, pass it to the standard in of the next process
   # input to the next command
-  # --password-stdin: tell docker that it can expect a password in stdin
+  # --password-stdin: Take the password from stdin
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
   - docker push crownkira/multi-client
